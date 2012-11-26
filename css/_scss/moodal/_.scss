@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+// =============
+// MOODAL STYLES
+// =============
+
+// Common vars
+$prefix: 'moodal-';
+$z-index: 999;
+
+// Shared
+@import '../_global/_';
+
+// Imports
+@import
+	'box',
+	'shade';

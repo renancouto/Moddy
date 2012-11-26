@@ -1,0 +1,9 @@
+// BOX
+
+.#{$prefix}box {
+	background: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: $z-index + 1;
+}

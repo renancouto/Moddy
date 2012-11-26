@@ -1,0 +1,37 @@
+// CSS3
+
+// Transition
+@mixin transition($property, $duration: .2s, $ease: linear, $delay: 0) {
+	$prefixes: webkit, o;
+	$transition: $property $duration $ease;
+
+	@if ($delay > 0) { $transition: $property $duration $ease $delay; }
+
+	@each $prefix in $prefixes {
+		#{''}-#{$prefix}-transition: $transition;
+	}
+
+	transition: $transition;
+}
+
+// Linear Gradient
+@mixin linear-gradient($pos, $start, $end, $startPos: 0%, $endPos: 100%, $legacy: false) {
+	$prefixes: webkit, o, moz;
+	$gradient: $pos, $start $startPos, $end $endPos;
+
+	@if ($legacy) {
+		background: $start;
+	}
+
+	@each $prefix in $prefixes {
+		background: #{''}-#{$prefix}-linear-gradient($gradient);
+	}
+
+	background: linear-gradient($gradient);
+}
+
+// Box sizing
+@mixin box-sizing($value) {
+	-moz-box-sizing: $value;
+	box-sizing: $value;
+}

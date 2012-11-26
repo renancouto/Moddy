@@ -1,0 +1,50 @@
+html, body { height: 100%; }
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+ol, ul, li { list-style: none; }
+
+nav ul, nav li { margin: 0; list-style: none; list-style-image: none; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+th, td { padding: 0; vertical-align: middle; }
+
+body { font: 13px/1.231 sans-serif; *font-size: small; }
+
+select, input, textarea, button { font: 99% sans-serif; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+
+sup { top: -0.5em; }
+
+sub { bottom: -0.25em; }
+
+em, i { font-style: italic; }
+
+strong, b { font-weight: 700; }
+
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+button, input, select, textarea { margin: 0; }
+
+input[type="radio"], input[type="checkbox"] { vertical-align: middle; }
+
+:focus { outline: 0; }
+
+textarea { overflow: auto; vertical-align: top; resize: vertical; }
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+
+ins { text-decoration: none; }
+
+del { text-decoration: line-through; }
+
+object { outline: none; display: block; overflow: hidden; }
+
+html { overflow-y: scroll; }
+
+body { background: #333333; }

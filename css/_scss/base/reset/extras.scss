@@ -1,0 +1,14 @@
+// RESET EXTRAS
+// @updated		Set 17 2011 by Renan Couto
+
+blockquote, q {
+	quotes: none;
+	&:before, &:after { content: ''; content: none; }
+}
+
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+// Force redraw on IE8, fix outline/scroll bug on Firefox 3.6, remove unnecessary margin
+// Source: copied from swffit, https://github.com/millermedeiros/basis.css/blob/master/basis/reset.css
+object { outline: none; display: block; overflow: hidden; }

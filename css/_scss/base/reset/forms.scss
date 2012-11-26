@@ -1,0 +1,19 @@
+// RESET FORMS
+// @updated		Set 17 2011 by Renan Couto
+
+// ***** You SHOULD NOT change this file. But if you have to, your updates must be GENERIC so they can fit further projects *****
+
+// Forms
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+button, input, select, textarea { margin: 0; }
+//input[type="radio"] { vertical-align: text-bottom; }
+//input[type="checkbox"] { vertical-align: bottom; }
+//.ie7 input[type="checkbox"] { vertical-align: baseline; }
+//.ie6 input { vertical-align: text-bottom; }
+
+input[type="radio"], input[type="checkbox"] { vertical-align: middle; }
+
+:focus { outline: 0; }
+
+// Remove scrollbar in textarea on IE, Improves readability and aligment in all browsers
+textarea { overflow: auto; vertical-align: top; resize: vertical; }
