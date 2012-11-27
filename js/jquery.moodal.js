@@ -133,7 +133,12 @@
 			},
 
 			Position: function() {
-				$els.box.css('margin', (-dimensions.height/2) + 'px 0 0' + (-dimensions.width/2) + 'px');
+				$els.box.css({
+					'margin-top': -dimensions.height/2 + 'px',
+					'margin-left': -dimensions.width/2 + 'px',
+					'top': '50%',
+					'left': '50%'
+				});
 			}
 		},
 
