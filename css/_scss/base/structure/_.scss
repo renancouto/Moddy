@@ -1,3 +1,7 @@
 // STRUCTURE
 
-body { background: shade(#fff, 80); }
+@import
+	'main',
+	'header',
+	'content',
+	'type';

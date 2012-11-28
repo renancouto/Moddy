@@ -6,12 +6,16 @@
 
 // Common vars
 $prefix: 'moodal-';
-$z-index: 999;
+$z-index: 1000;
 
 // Shared
 @import '../_global/_';
 
 // Imports
 @import
+	'shade',
 	'box',
-	'shade';
+	'preloader',
+
+	'box.regular',
+	'preloader.regular';

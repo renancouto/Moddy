@@ -1,0 +1,11 @@
+// REGULAR
+
+.#{$prefix}preloader.regular {
+	$u: 5px;
+
+	border-radius: 50%;
+	box-shadow: rgba(0,0,0,.9) 0 1px 5px;
+	overflow: hidden;
+
+	img { padding: $u; }
+}

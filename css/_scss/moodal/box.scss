@@ -5,5 +5,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: $z-index + 1;
+	font-size: 12px;
+	z-index: $z-index;
+	@include box-sizing(border-box);
 }

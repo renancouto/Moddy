@@ -1,17 +1,14 @@
 // CSS3
 
 // Transition
-@mixin transition($property, $duration: .2s, $ease: linear, $delay: 0) {
+@mixin transition($properties...) {
 	$prefixes: webkit, o;
-	$transition: $property $duration $ease;
-
-	@if ($delay > 0) { $transition: $property $duration $ease $delay; }
 
 	@each $prefix in $prefixes {
-		#{''}-#{$prefix}-transition: $transition;
+		#{''}-#{$prefix}-transition: $properties;
 	}
 
-	transition: $transition;
+	transition: $properties;
 }
 
 // Linear Gradient
@@ -34,4 +31,15 @@
 @mixin box-sizing($value) {
 	-moz-box-sizing: $value;
 	box-sizing: $value;
+}
+
+// Transform
+@mixin transform($properties...) {
+	$prefixes: webkit, o, ms;
+
+	@each $prefix in $prefixes {
+		#{''}-#{$prefix}-transform: $properties;
+	}
+
+	transform: $properties;
 }

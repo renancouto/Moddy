@@ -10,18 +10,48 @@
 
 <?php
 // Demos
-$simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam modi dolore reiciendis fugit? Maiores eligendi autem dolorum qui ad pariatur non eaque consequatur. Possimus eum vitae nesciunt quam consequatur inventore!')";
+$simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')";
+$fixedWidth = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
+$ajax = "$.moodal({ ajax: { url: 'content/simple.html' }})";
 ?>
 
 <body>
-	<div id="wrapper">
-		<h1 class="heading main">Moodal</h1>
-		<p>Yet another jQuery modal plugin</p>
+	<div class="main-wrapper">
+		<header class="main-header">
+			<!-- <div class="moodal-icon">
+				<div class="horn"></div>
+				<div class="eye left"></div>
+				<div class="eye right"></div>
+				<div class="nose left"></div>
+				<div class="nose right"></div>
+				<div class="ears"></div>
+				<div class="close">x</div>
+			</div> -->
 
-		<h2 class="heading section">Demos</h2>
-		<h3 id="simple" class="item">Simple</h3>
-		<p class="desc">Just content and no extra settings</p>
-		<pre class="code"><?php echo $simple; ?></pre>
+			<h1 class="heading main">Moodal</h1>
+			<p>Yet another jQuery modal plugin</p>
+		</header>
+
+		<div class="content">
+			<h2 class="heading section">Demos</h2>
+
+			<section id="simple" class="content-block clickable" title="Click to run!">
+				<h3 class="heading">Simple</h3>
+				<p class="desc">Just content and no extra settings</p>
+				<pre class="code"><?php echo $simple; ?>;</pre>
+			</section>
+
+			<section id="fixedWidth" class="content-block clickable" title="Click to run!">
+				<h3 class="heading">Fixed width</h3>
+				<pre class="code"><?php echo $fixedWidth; ?>;</pre>
+			</section>
+
+			<section id="ajax" class="content-block clickable" title="Click to run!">
+				<h3 class="heading">Loaded content via Ajax</h3>
+				<p class="desc">You can use any jquery's ajax settings</p>
+				<pre class="code"><?php echo $ajax; ?>;</pre>
+			</section>
+		</div>
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -30,7 +60,9 @@ $simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Q
 
 	<script>
 	(function($){
-		$('#simple').on('click', function(){ <?php echo $simple ?>; });
+		$('#simple.clickable').on('click', function(){ <?php echo $simple ?>; });
+		$('#fixedWidth.clickable').on('click', function(){ <?php echo $fixedWidth ?>; });
+		$('#ajax.clickable').on('click', function(){ <?php echo $ajax ?>; });
 	})(jQuery);
 	</script>
 </body>

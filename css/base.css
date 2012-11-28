@@ -47,4 +47,33 @@ object { outline: none; display: block; overflow: hidden; }
 
 html { overflow-y: scroll; }
 
-body { background: #333333; }
+body { background: #333333; font-size: 62.5%; }
+
+.main-wrapper { color: #fff; font-size: 1.2em; max-width: 1250px; margin: auto; padding: 30px 20px; text-shadow: rgba(0, 0, 0, 0.8) 0 1px 1px; }
+
+.main-header { margin-bottom: 20px; }
+
+.moodal-icon { border-radius: 5px; border: 2px solid #fff; box-shadow: rgba(0, 0, 0, 0.5) 0 1px 2px; float: left; width: 50px; height: 42px; margin: 0 15px 0 -10px; position: relative; }
+.moodal-icon div { position: absolute; text-shadow: none; }
+.moodal-icon .close { background: #fff; border-radius: 50%; color: #333; font-weight: 700; width: 15px; height: 15px; text-align: center; line-height: 13px; text-shadow: none; top: -8px; right: -8px; }
+.moodal-icon .eye { box-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px; top: 7px; }
+.moodal-icon .eye:before { background: #fff; border-radius: 50%; content: '.'; color: #000; font-weight: 700; padding: 0 1px; }
+.moodal-icon .eye.left { left: 12px; }
+.moodal-icon .eye.right { right: 12px; }
+.moodal-icon .nose { background: #fff; border-radius: 50%; box-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px; display: block; position: absolute; bottom: 7px; width: 3px; height: 3px; }
+.moodal-icon .nose.left { left: 19px; }
+.moodal-icon .nose.right { right: 19px; }
+
+.content-block { background: #2d2d2d; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px inset; margin: 5px -5px 0; padding: 10px; -webkit-transition: all; -o-transition: all; transition: all; }
+.content-block.clickable { cursor: pointer; overflow: hidden; position: relative; }
+.content-block.clickable:before { background: rgba(0, 0, 0, 0.3); border-radius: 0 0 0 5px; content: attr(title); font-size: .9em; position: absolute; padding: 5px 8px; right: 0; top: -25px; -webkit-transition: all; -o-transition: all; transition: all; }
+.content-block.clickable:hover { background: #213742; box-shadow: rgba(0, 0, 0, 0.8) 0 0 5px inset; }
+.content-block.clickable:hover:before { top: 0; }
+
+.heading { font-weight: 700; }
+.heading.main { font-size: 2em; }
+.heading.section { font-size: 1.5em; }
+
+.desc { padding-bottom: 5px; }
+
+.code { background: #e5e5e5; border-radius: 3px; box-shadow: white 0 2px 1px inset, rgba(0, 0, 0, 0.5) 0 1px 2px; color: #000; font: 1.2em monospace; margin: 5px -5px -5px; padding: 10px; white-space: pre-wrap; text-shadow: #fff 0 1px 0; }

@@ -1,0 +1,24 @@
+// TYPE
+
+.heading {
+	font-weight: 700;
+
+	&.main { font-size: 2em; }
+	&.section { font-size: 1.5em; }
+}
+
+.desc { padding-bottom: $u; }
+
+.code {
+	background: shade(#fff, 10);
+	border-radius: $u - 2;
+	box-shadow:
+		#fff 0 2px 1px inset,
+		rgba(0,0,0,.5) 0 1px 2px;
+	color: #000;
+	font: 1.2em monospace;
+	margin: $u (-$u) (-$u);
+	padding: $u*2;
+	white-space: pre-wrap;
+	text-shadow: #fff 0 1px 0;
+}

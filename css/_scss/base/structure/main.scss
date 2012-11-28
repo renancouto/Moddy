@@ -1,0 +1,15 @@
+// MAIN
+
+body {
+	background: shade(#fff, 80);
+	font-size: 62.5%;
+}
+
+.main-wrapper {
+	color: #fff;
+	font-size: 1.2em;
+	max-width: 1250px;
+	margin: auto;
+	padding: $u*6 $u*4;
+	text-shadow: rgba(0,0,0,.8) 0 1px 1px;
+}

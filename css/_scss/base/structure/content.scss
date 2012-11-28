@@ -1,0 +1,34 @@
+// CONTENT
+
+.content-block {
+	background: shade(#333, 10);
+	border-radius: $u;
+	box-shadow: rgba(0,0,0,.5) 0 0 5px inset;
+	margin: $u (-$u) 0;
+	padding: $u*2;
+	@include transition(all);
+
+	&.clickable {
+		cursor: pointer;
+		overflow: hidden;
+		position: relative;
+
+		&:before {
+			background: rgba(0,0,0,.3);
+			border-radius: 0 0 0 $u;
+			content: attr(title);
+			font-size: .9em;
+			position: absolute;
+			padding: $u $u*2 - 2;
+			right: 0;
+			top: -25px;
+			@include transition(all);
+		}
+
+		&:hover {
+			background: shade(#356, 35);
+			box-shadow: rgba(0,0,0,.8) 0 0 5px inset;
+			&:before { top: 0; }
+		}
+	}
+}
