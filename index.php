@@ -12,7 +12,7 @@
 // Demos
 $simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')";
 $fixedWidth = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
-$ajax = "$.moodal({ ajax: { url: 'content/simple.html' }})";
+$ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
 ?>
 
 <body>

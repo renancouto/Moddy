@@ -20,7 +20,8 @@
 			dimensions: {
 				height: 'auto',
 				width: 'auto',
-				limit: 50
+				framePadding: 50,
+				minWidth: 400
 			},
 
 			prefix: 'moodal-',
@@ -219,6 +220,30 @@
 					}
 
 					$els.box.css(props);
+				},
+
+				Set = {
+					Width: function (width) {
+						dim.box.width = width;
+
+						Reset('width');
+						Reset('height');
+
+						Apply('width');
+
+						Define('height', 'height');
+						Apply('height');
+					},
+
+					Height: function (height) {
+						dim.box.height = height;
+
+						Reset('height');
+						Reset('width');
+
+						Define('width', 'width');
+						Apply('width');
+					}
 				};
 
 				if (update) {
@@ -226,7 +251,9 @@
 					Reset('height');
 				}
 
-				$els.box.show();
+				$els.box
+					.show()
+					.removeClass('min-width');
 
 				if (plugin.settings.dimensions.width !== 'auto') {
 					dim.box.width = plugin.settings.dimensions.width;
@@ -241,26 +268,16 @@
 				Define('width', update ? 'width' : 'outerWidth');
 				Define('height', update ? 'height' : 'outerHeight');
 
-				if (dim.box.width > dim.limit.width) {
-					dim.box.width = dim.limit.width;
-
-					Reset('width');
-					Reset('height');
-
-					Apply('width');
-
-					Define('height', 'height');
-					Apply('height');
+				if (dim.frame.width <= plugin.settings.dimensions.minWidth) {
+					$els.box.addClass('min-width');
+					Set.Width(dim.frame.width);
+				}
+				else if (dim.box.width > dim.limit.width) {
+					Set.Width(dim.limit.width);
 				}
 
 				if (dim.box.height > dim.limit.height) {
-					dim.box.height = dim.limit.height;
-
-					Reset('height');
-					Reset('width');
-
-					Define('width', 'width');
-					Apply('width');
+					Set.Height(dim.limit.height);
 				}
 
 				if (!update) {
@@ -284,8 +301,8 @@
 			Size: function() {
 				dim.frame.width = $els.frame.width();
 				dim.frame.height = $els.frame.height();
-				dim.limit.width = dim.frame.width - plugin.settings.dimensions.limit;
-				dim.limit.height = dim.frame.height - plugin.settings.dimensions.limit;
+				dim.limit.width = dim.frame.width - plugin.settings.dimensions.framePadding;
+				dim.limit.height = dim.frame.height - plugin.settings.dimensions.framePadding;
 			},
 
 			Handler: {

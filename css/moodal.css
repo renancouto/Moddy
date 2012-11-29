@@ -7,6 +7,8 @@
 .moodal-preloader img { display: block; }
 
 .moodal-box.regular { border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.8) 0 1px 8px; }
+.moodal-box.regular.min-width { border-radius: 0; }
+.moodal-box.regular.min-width .moodal-close { border-radius: 0; border-width: 1px; padding: 0 3px; right: 0; top: 0; }
 .moodal-box.regular .moodal-content { padding: 10px; }
 .moodal-box.regular .moodal-close { background: #000; border: 2px solid #fff; border-radius: 50%; color: #fff; font-weight: 700; padding: 0 4px 1px; position: absolute; right: -5px; top: -5px; }
 .moodal-box.regular .moodal-close:hover { border-color: yellow; color: yellow; }

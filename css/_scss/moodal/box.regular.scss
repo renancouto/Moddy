@@ -6,6 +6,18 @@
 	border-radius: $u;
 	box-shadow: rgba(0,0,0,.8) 0 1px 8px;
 
+	&.min-width {
+		border-radius: 0;
+
+		.moodal-close {
+			border-radius: 0;
+			border-width: 1px;
+			padding: 0 $u - 2;
+			right: 0;
+			top: 0;
+		}
+	}
+
 	.moodal-content { padding: $u*2; }
 
 	.moodal-close {
