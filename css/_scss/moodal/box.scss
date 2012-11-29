@@ -2,10 +2,13 @@
 
 .#{$prefix}box {
 	background: #fff;
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
 	font-size: 12px;
 	z-index: $z-index;
 	@include box-sizing(border-box);
+
+	.moodal-close { cursor: pointer; }
 }

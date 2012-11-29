@@ -11,7 +11,11 @@
 				speed: 300
 			},
 
-			closeIcon: 'x',
+			close: {
+				show: true,
+				icon: 'x',
+				title: 'Close'
+			},
 
 			dimensions: {
 				height: 'auto',
@@ -34,7 +38,8 @@
 			theme: 'regular'
 		},
 
-		$els = {};
+		$els = {},
+		preloader;
 
 	$[pluginName] = function(content, options) {
 		var plugin,
@@ -46,18 +51,23 @@
 				content: '<div {class}>',
 				nav: '<nav {class} {id}><ul>',
 				navItem: '<li {class}><span>',
-				close: '<span {class} {id}>{i}</span>',
+				close: '<span {class} {id} title="{title}">{i}</span>',
 				preloader: '<span {class} {id}><img src="{url}" height="{h}" width="{w}"></span>'
 			},
 
 			dim = {
 				box: {},
 				frame: {},
-				limit: {}
+				limit: {},
+				preloader: {}
 			},
 
 			ajaxSettings = {
 				dataType: 'html',
+
+				complete: function() {
+					Helpers.Hide($els.preloader);
+				},
 
 				error: function(a, b, c) {
 					throw new Error (pluginName + ' ajax error:', a, b, c);
@@ -65,7 +75,7 @@
 
 				success: function(data) {
 					content.data = data;
-					Content.Build(true);
+					setTimeout(function(){ Content.Build(true); }, plugin.settings.animation.speed);
 				}
 			},
 
@@ -77,13 +87,13 @@
 				Objs.Setup();
 				Objs.Build();
 
-				Handlers.Setup();
+				Common.Handlers();
 			}
-
-			Content.Define();
 
 			Frame.Size();
 			Frame.Handler.Set();
+
+			Content.Define();
 
 			Helpers.Show($els.shade);
 		},
@@ -101,7 +111,9 @@
 					el = Helpers.Attrs(markup[key], key);
 
 					if (key === 'close') {
-						el = el.replace('{i}', plugin.settings.closeIcon);
+						el = el
+							.replace('{i}', plugin.settings.close.icon)
+							.replace('{title}', plugin.settings.close.title);
 					}
 
 					if (key === 'preloader') {
@@ -109,9 +121,12 @@
 							.replace('{url}', plugin.settings.preloader.url)
 							.replace('{h}', plugin.settings.preloader.height)
 							.replace('{w}', plugin.settings.preloader.width);
-					}
 
-					$els[key] = $(el);
+						preloader = el;
+					}
+					else {
+						$els[key] = $(el);
+					}
 				}
 
 				$els.frame = $(window);
@@ -119,7 +134,7 @@
 			},
 
 			Build: function() {
-				$els.body.append($els.shade, $els.preloader, $els.box);
+				$els.body.append($els.shade, $els.box);
 			}
 		},
 
@@ -152,7 +167,9 @@
 					.children('.' + plugin.settings.prefix + 'content')
 						.remove();
 
-				$els.preloader.attr('class', plugin.settings.prefix + 'preloader ' + plugin.settings.theme);
+				if (plugin.settings.close.show) {
+					$els.box.append($els.close);
+				}
 			},
 
 			Build: function(fromAjax) {
@@ -168,7 +185,9 @@
 
 			Load: function() {
 				var settings = $.extend(true, {}, ajaxSettings, content.data.ajax);
-				$.ajax(settings);
+
+				Preloader.Setup();
+				Helpers.Show($els.preloader, 0, function() { $.ajax(settings); });
 			}
 		},
 
@@ -285,13 +304,42 @@
 			}
 		},
 
-		Handlers = {
+		Preloader = {
 			Setup: function() {
-				$els.shade.on('click', function(){
-					Helpers.Hide($els.box);
-					Helpers.Hide($els.shade, plugin.settings.animation.speed);
-					Frame.Handler.Remove();
-				});
+				if (!$els.preloader || !$els.preloader.length) {
+					$els.preloader = $(preloader);
+					$els.preloader.appendTo($els.body);
+				}
+
+				$els.preloader
+					.attr('class', plugin.settings.prefix + 'preloader ' + plugin.settings.theme)
+					.show();
+
+				dim.preloader = {
+					width: $els.preloader.width(),
+					height: $els.preloader.height()
+				};
+
+				$els.preloader.hide();
+
+				this.Position();
+			},
+
+			Position: function() {
+				$els.preloader.css('margin', -dim.preloader.height/2 + 'px 0 0 ' + -dim.preloader.width/2 + 'px');
+			}
+		},
+
+		Common = {
+			Handlers: function() {
+				$els.shade.on('click', Common.Close);
+				$els.close.on('click', Common.Close);
+			},
+
+			Close: function() {
+				Helpers.Hide($els.box);
+				Helpers.Hide($els.shade, plugin.settings.animation.speed);
+				Frame.Handler.Remove();
 			}
 		},
 
@@ -309,16 +357,30 @@
 					.replace('{id}', attrs.id);
 			},
 
-			Show: function($el, delay) {
-				$el
-					.delay(delay ? delay + 1 : 0)
-					.fadeIn(plugin.settings.animation.speed);
+			Show: function($el, delay, callback) {
+				setTimeout(function(){
+					if ($el.is('#' + plugin.settings.prefix + 'box') && !$els.shade.is(':visible')) {
+						$els.box.hide();
+						return;
+					}
+
+					$el.fadeIn(plugin.settings.animation.speed, callback);
+				}, delay ? delay + 1 : 0);
 			},
 
-			Hide: function($el, delay) {
+			Hide: function($el, delay, callback) {
 				$el
 					.delay(delay ? delay + 1 : 0)
-					.fadeOut(plugin.settings.animation.speed);
+					.stop(true, true)
+					.fadeOut(plugin.settings.animation.speed, function() {
+						if (callback) {
+							callback();
+						}
+
+						if ($el.is('#' + plugin.settings.prefix + 'shade') && $els.box.is(':visible')) {
+							$els.box.hide();
+						}
+					});
 			}
 		};
 

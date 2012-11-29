@@ -7,4 +7,22 @@
 	box-shadow: rgba(0,0,0,.8) 0 1px 8px;
 
 	.moodal-content { padding: $u*2; }
+
+	.moodal-close {
+		background: #000;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		color: #fff;
+		font-weight: 700;
+		padding: 0 $u - 1 1px;
+		position: absolute;
+		right: -$u;
+		top: -$u;
+
+		&:hover {
+			$c: #ff0;
+			border-color: $c;
+			color: $c;
+		}
+	}
 }
