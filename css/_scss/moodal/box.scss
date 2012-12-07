@@ -11,4 +11,9 @@
 	@include box-sizing(border-box);
 
 	.moodal-close { cursor: pointer; }
+
+	.moodal-content {
+		// Do not add padding to this element, if you want to put some space around your content, add padding to .moodal-contentItem
+		&.overflow-y { overflow-y: scroll; }
+	}
 }

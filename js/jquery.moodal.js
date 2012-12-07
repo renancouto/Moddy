@@ -50,6 +50,7 @@
 				shade: '<div {class} {id}>',
 				box: '<div {class} {id}>',
 				content: '<div {class}>',
+				contentItem: '<div {class}>',
 				nav: '<nav {class} {id}><ul>',
 				navItem: '<li {class}><span>',
 				close: '<span {class} {id} title="{title}">{i}</span>',
@@ -135,6 +136,7 @@
 			},
 
 			Build: function() {
+				$els.box.append($els.content);
 				$els.body.append($els.shade, $els.box);
 			}
 		},
@@ -164,8 +166,12 @@
 			Reset: function() {
 				$els.box
 					.addClass(plugin.settings.theme)
+					.removeAttr('style');
+
+				$els.content
 					.removeAttr('style')
-					.children('.' + plugin.settings.prefix + 'content')
+					.attr('class', plugin.settings.prefix + 'content ' + content.cssClass ? content.cssClass : '')
+					.children()
 						.remove();
 
 				if (plugin.settings.close.show) {
@@ -174,11 +180,10 @@
 			},
 
 			Build: function(fromAjax) {
-				$els.content
+				$els.contentItem
 					.clone()
-						.addClass(content.cssClass)
 						.html(content.data)
-						.appendTo($els.box);
+						.appendTo($els.content);
 
 				Box.Setup();
 				Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed);
@@ -280,6 +285,15 @@
 					Set.Height(dim.limit.height);
 				}
 
+				dim.content = {
+					height: $els.content.height(),
+					width: $els.content.width()
+				};
+
+				if (dim.box.height < dim.content.height) {
+					$els.content.addClass('overflow-y');
+				}
+
 				if (!update) {
 					$els.box.hide();
 				}
@@ -294,6 +308,8 @@
 					'top': '50%',
 					'left': '50%'
 				});
+
+				$els.content.css('max-height', dim.box.height + 'px');
 			}
 		},
 
