@@ -11,6 +11,10 @@
 				speed: 300
 			},
 
+			callbacks: {
+				// show, hide
+			},
+
 			close: {
 				show: true,
 				icon: 'x',
@@ -40,13 +44,12 @@
 		},
 
 		$els = {},
+		plugin = {},
 		preloader;
 
 	$[pluginName] = function(content, options) {
-		var plugin,
-
-			// Don't need to change this
-			markup = {
+		// Don't need to change this
+		var markup = {
 				shade: '<div {class} {id}>',
 				box: '<div {class} {id}>',
 				content: '<div {class}>',
@@ -102,7 +105,6 @@
 
 		Objs = {
 			Define: function() {
-				plugin = this;
 				plugin.settings = $.extend(true, {}, defaults, options);
 			},
 
@@ -180,13 +182,14 @@
 			},
 
 			Build: function(fromAjax) {
-				$els.contentItem
+				var $item = $els.contentItem
 					.clone()
 						.html(content.data)
 						.appendTo($els.content);
 
 				Box.Setup();
-				Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed);
+
+				Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
 			},
 
 			Load: function() {
@@ -259,6 +262,8 @@
 				$els.box
 					.show()
 					.removeClass('min-width');
+
+				$els.content.removeClass('overflow-y');
 
 				if (plugin.settings.dimensions.width !== 'auto') {
 					dim.box.width = plugin.settings.dimensions.width;
@@ -371,7 +376,8 @@
 
 			Close: function() {
 				Helpers.Hide($els.box);
-				Helpers.Hide($els.shade, plugin.settings.animation.speed);
+				Helpers.Hide($els.shade, plugin.settings.animation.speed, plugin.settings.callbacks.hide);
+
 				Frame.Handler.Remove();
 			}
 		},
@@ -390,14 +396,14 @@
 					.replace('{id}', attrs.id);
 			},
 
-			Show: function($el, delay, callback) {
+			Show: function($el, delay, callback, params) {
 				setTimeout(function(){
 					if ($el.is('#' + plugin.settings.prefix + 'box') && !$els.shade.is(':visible')) {
 						$els.box.hide();
 						return;
 					}
 
-					$el.fadeIn(plugin.settings.animation.speed, callback);
+					$el.fadeIn(plugin.settings.animation.speed, callback ? callback(params) : null);
 				}, delay ? delay + 1 : 0);
 			},
 
@@ -418,9 +424,5 @@
 		};
 
 		Init();
-	};
-
-	$.fn[pluginName] = function(content, options) {
-		new $[pluginName](content, options);
 	};
 })(jQuery);

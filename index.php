@@ -13,6 +13,7 @@
 $simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')";
 $fixedWidth = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
 $ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
+$callbacks = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
 ?>
 
 <body>
@@ -51,6 +52,12 @@ $ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
 				<p class="desc">You can use any jquery's ajax settings</p>
 				<pre class="code"><?php echo $ajax; ?>;</pre>
 			</section>
+
+			<section id="callbacks" class="content-block clickable" title="Click to run!">
+				<h3 class="heading">With callbacks</h3>
+				<p class="desc">Available: on show (returns the content item); on hide</p>
+				<pre class="code"><?php echo $callbacks; ?>;</pre>
+			</section>
 		</div>
 	</div>
 
@@ -63,6 +70,7 @@ $ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
 		$('#simple.clickable').on('click', function(){ <?php echo $simple ?>; });
 		$('#fixedWidth.clickable').on('click', function(){ <?php echo $fixedWidth ?>; });
 		$('#ajax.clickable').on('click', function(){ <?php echo $ajax ?>; });
+		$('#callbacks.clickable').on('click', function(){ <?php echo $callbacks ?>; });
 	})(jQuery);
 	</script>
 </body>
