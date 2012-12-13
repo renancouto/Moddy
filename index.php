@@ -15,7 +15,7 @@ $fixedWidth = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing eli
 $ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
 $callbacks = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
 $multiple = "$.moodal(['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.'])";
-$multipleAjax = "$.moodal([{ ajax: { url: 'content/a.php' }}, { ajax: { url: 'content/b.php' }}])";
+$multipleAjax = "$.moodal([{ ajax: { url: 'content/a.php' }, nav: { label: 'Botao' } } }, { ajax: { url: 'content/b.php' }}])";
 ?>
 
 <body>

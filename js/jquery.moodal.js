@@ -132,8 +132,6 @@
 			Setup: function() {
 				var i, t, item;
 
-				this.Reset();
-
 				if ($.isArray(content)) {
 					for (i = 0, t = content.length; i < t; i++) {
 						contents.push(this.Define(content[i], i));
@@ -143,7 +141,12 @@
 					contents.push(this.Define(content, 0));
 				}
 
-				for (i = 0, t = contents.length; i < t; i++) {
+				t = contents.length;
+
+				this.Reset();
+				Nav.Setup(t > 1);
+
+				for (i = 0; i < t; i++) {
 					item = contents[i];
 
 					if (item.type === 'ajax') {
@@ -152,18 +155,22 @@
 					else {
 						this.Build(item);
 					}
+
+					if (t > 1) {
+						Nav.Build(item);
+					}
 				}
 			},
 
 			Define: function(item, index) {
 				if ($.isPlainObject(item)) {
 					if (item.ajax) {
-						return {
-							type: 'ajax',
-							data: item.ajax,
-							index: index
-						};
+						item.type = 'ajax';
+						item.data = item.ajax;
 					}
+
+					item.index = index;
+					return item;
 				}
 				else {
 					return {
@@ -229,6 +236,10 @@
 					Box.Setup();
 					Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
 				}
+			},
+
+			Change: function(index) {
+
 			}
 		},
 
@@ -347,6 +358,35 @@
 				});
 
 				$els.content.css('max-height', dim.box.height + 'px');
+			}
+		},
+
+		Nav = {
+			Setup: function(build) {
+				$els.nav
+					.remove()
+					.children()
+						.empty();
+
+				if (build) {
+					$els.box.append($els.nav);
+				}
+			},
+
+			Build: function(item) {
+				var $item = $els.navItem
+					.clone()
+						.html(item.nav && item.nav.label ? item.nav.label : null)
+						.attr('data-index', item.index)
+						.on('click', function() {
+							var $this = $(this);
+							Content.Change($this.attr('data-index'));
+
+							if (item.nav && item.nav.callback && $.isFunction(item.nav.callback)) {
+								item.nav.callback($this);
+							}
+						})
+						.appendTo($els.nav.children());
 			}
 		},
 
