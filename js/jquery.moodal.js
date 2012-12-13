@@ -67,22 +67,7 @@
 				preloader: {}
 			},
 
-			ajaxSettings = {
-				dataType: 'html',
-
-				complete: function() {
-					Helpers.Hide($els.preloader);
-				},
-
-				error: function(a, b, c) {
-					throw new Error (pluginName + ' ajax error:', a, b, c);
-				},
-
-				success: function(data) {
-					content.data = data;
-					setTimeout(function(){ Content.Build(true); }, plugin.settings.animation.speed);
-				}
-			},
+			contents = [],
 
 		// Setup
 		Init = function() {
@@ -98,7 +83,7 @@
 			Frame.Size();
 			Frame.Handler.Set();
 
-			Content.Define();
+			Content.Setup();
 
 			Helpers.Show($els.shade);
 		},
@@ -144,24 +129,48 @@
 		},
 
 		Content = {
-			Define: function() {
-				var SetType = function(type) {
-					content = {
-						type: type,
-						data: content
-					};
-				};
+			Setup: function() {
+				var i, t, item;
 
 				this.Reset();
 
-				if (!$.isPlainObject(content)) {
-					SetType('html');
-					Content.Build();
+				if ($.isArray(content)) {
+					for (i = 0, t = content.length; i < t; i++) {
+						contents.push(this.Define(content[i], i));
+					}
+				}
+				else {
+					contents.push(this.Define(content, 0));
 				}
 
-				if (content.ajax) {
-					SetType('ajax');
-					Content.Load();
+				for (i = 0, t = contents.length; i < t; i++) {
+					item = contents[i];
+
+					if (item.type === 'ajax') {
+						this.Load(item);
+					}
+					else {
+						this.Build(item);
+					}
+				}
+			},
+
+			Define: function(item, index) {
+				if ($.isPlainObject(item)) {
+					if (item.ajax) {
+						return {
+							type: 'ajax',
+							data: item.ajax,
+							index: index
+						};
+					}
+				}
+				else {
+					return {
+						type: 'html',
+						data: item,
+						index: index
+					};
 				}
 			},
 
@@ -172,7 +181,6 @@
 
 				$els.content
 					.removeAttr('style')
-					.attr('class', plugin.settings.prefix + 'content ' + content.cssClass ? content.cssClass : '')
 					.children()
 						.remove();
 
@@ -181,22 +189,46 @@
 				}
 			},
 
-			Build: function(fromAjax) {
-				var $item = $els.contentItem
-					.clone()
-						.html(content.data)
-						.appendTo($els.content);
+			Load: function(item) {
+				var settings = {
+					dataType: 'html',
 
-				Box.Setup();
+					complete: function() {
+						if (!item.index) {
+							Helpers.Hide($els.preloader);
+						}
+					},
 
-				Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
-			},
+					error: function(a, b, c) {
+						throw new Error (pluginName + ' ajax error:', a, b, c);
+					},
 
-			Load: function() {
-				var settings = $.extend(true, {}, ajaxSettings, content.data.ajax);
+					success: function(data) {
+						item.data = data;
+						setTimeout(function(){ Content.Build(item, true); }, plugin.settings.animation.speed);
+					}
+				};
+
+				settings = $.extend(true, {}, settings, item.data);
 
 				Preloader.Setup();
 				Helpers.Show($els.preloader, 0, function() { $.ajax(settings); });
+			},
+
+			Build: function(item, fromAjax) {
+				var $item = $els.contentItem
+					.clone()
+						.html(item.data)
+						.attr('data-index', item.index)
+						.appendTo($els.content);
+
+				if (item.index) {
+					$item.hide();
+				}
+				else {
+					Box.Setup();
+					Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
+				}
 			}
 		},
 
@@ -374,9 +406,9 @@
 				$els.close.on('click', Common.Close);
 			},
 
-			Close: function() {
+			Close: function(callback) {
 				Helpers.Hide($els.box);
-				Helpers.Hide($els.shade, plugin.settings.animation.speed, plugin.settings.callbacks.hide);
+				Helpers.Hide($els.shade, plugin.settings.animation.speed, callback ? callback : plugin.settings.callbacks.hide);
 
 				Frame.Handler.Remove();
 			}
@@ -412,7 +444,7 @@
 					.delay(delay ? delay + 1 : 0)
 					.stop(true, true)
 					.fadeOut(plugin.settings.animation.speed, function() {
-						if (callback) {
+						if (callback && $.isFunction(callback)) {
 							callback();
 						}
 
@@ -424,5 +456,8 @@
 		};
 
 		Init();
+
+		// Exposed Methods
+		$[pluginName].Close = Common.Close;
 	};
 })(jQuery);

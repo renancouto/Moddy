@@ -14,6 +14,8 @@ $simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')
 $fixedWidth = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
 $ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
 $callbacks = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
+$multiple = "$.moodal(['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.'])";
+$multipleAjax = "$.moodal([{ ajax: { url: 'content/a.php' }}, { ajax: { url: 'content/b.php' }}])";
 ?>
 
 <body>
@@ -58,6 +60,18 @@ $callbacks = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit
 				<p class="desc">Available: on show (returns the content item); on hide</p>
 				<pre class="code"><?php echo $callbacks; ?>;</pre>
 			</section>
+
+			<section id="multiple" class="content-block clickable" title="Click to run!">
+				<h3 class="heading">Multiple content</h3>
+				<p class="desc"></p>
+				<pre class="code"><?php echo $multiple; ?>;</pre>
+			</section>
+
+			<section id="multipleAjax" class="content-block clickable" title="Click to run!">
+				<h3 class="heading">Multiple content</h3>
+				<p class="desc">With Ajax</p>
+				<pre class="code"><?php echo $multipleAjax; ?>;</pre>
+			</section>
 		</div>
 	</div>
 
@@ -71,6 +85,8 @@ $callbacks = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit
 		$('#fixedWidth.clickable').on('click', function(){ <?php echo $fixedWidth ?>; });
 		$('#ajax.clickable').on('click', function(){ <?php echo $ajax ?>; });
 		$('#callbacks.clickable').on('click', function(){ <?php echo $callbacks ?>; });
+		$('#multiple.clickable').on('click', function(){ <?php echo $multiple ?>; });
+		$('#multipleAjax.clickable').on('click', function(){ <?php echo $multipleAjax ?>; });
 	})(jQuery);
 	</script>
 </body>
