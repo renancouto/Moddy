@@ -4,6 +4,11 @@
 .moddy-box .moddy-close { cursor: pointer; }
 .moddy-box .moddy-content.overflow-y { overflow-y: scroll; }
 
+.moddy-nav { padding: 0 6px 7px 6px; }
+
+.moddy-navItem { background: #999; border: 1px solid #333; border-radius: 2px; color: #fff; cursor: pointer; display: inline-block; font-size: 11px; margin-left: 2px; padding: 2px 4px; text-transform: uppercase; text-shadow: rgba(0, 0, 0, 0.5) 0 1px 0; }
+.moddy-navItem:hover { background: #898989; }
+
 .moddy-preloader { background: #fff; display: none; position: fixed; top: 50%; left: 50%; z-index: 1001; }
 .moddy-preloader img { display: block; }
 

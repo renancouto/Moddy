@@ -1,0 +1,21 @@
+// NAV
+
+.#{$prefix}nav {
+	padding: 0 6px 7px 6px;
+}
+
+.#{$prefix}navItem {
+	background: #999;
+	border: 1px solid #333;
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 11px;
+	margin-left: 2px;
+	padding: 2px 4px;
+	text-transform: uppercase;
+	text-shadow: rgba(0,0,0,.5) 0 1px 0;
+
+	&:hover { background: shade(#999, 10); }
+}

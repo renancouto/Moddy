@@ -15,7 +15,7 @@ $fixedWidth = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit
 $ajax = "$.moddy({ ajax: { url: 'content/simple.php' }})";
 $callbacks = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
 $multiple = "$.moddy(['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.'])";
-$multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'A' } }, { ajax: { url: 'content/b.php' } }])";
+$multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'Content A' } }, { ajax: { url: 'content/b.php' }, nav: { label: 'Content B' } }])";
 ?>
 
 <body>
@@ -78,6 +78,7 @@ $multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'A' } 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src=js/jquery-1.8.3.min.js%3E%3C/script%3E'))</script>
 	<script src="js/jquery.moddy.js"></script>
+	<script src="js/jquery.actual.js"></script>
 
 	<script>
 	(function($){

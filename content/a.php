@@ -1,3 +1,3 @@
-<?php sleep(3); ?>
+<?php sleep(1); ?>
 
-<p>Content A</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>

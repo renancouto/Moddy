@@ -28,6 +28,10 @@
 				minWidth: 400
 			},
 
+			nav: {
+				selected: 'selected'
+			},
+
 			prefix: 'moddy-',
 
 			preloader: {
@@ -236,10 +240,6 @@
 					Box.Setup();
 					Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
 				}
-			},
-
-			Change: function(index) {
-
 			}
 		},
 
@@ -374,19 +374,43 @@
 			},
 
 			Build: function(item) {
-				var $item = $els.navItem
+				var label = item.nav && item.nav.label ? item.nav.label : null,
+
+				$item = $els.navItem
 					.clone()
-						.html(item.nav && item.nav.label ? item.nav.label : null)
-						.attr('data-index', item.index)
+						.html(label)
+						.attr({'title': label, 'data-index': item.index})
 						.on('click', function() {
 							var $this = $(this);
-							Content.Change($this.attr('data-index'));
+
+							if ($this.hasClass(plugin.settings.nav.selected)) {
+								return;
+							}
+
+							Nav.Change($this);
 
 							if (item.nav && item.nav.callback && $.isFunction(item.nav.callback)) {
 								item.nav.callback($this);
 							}
 						})
 						.appendTo($els.nav.children());
+
+				if (!item.index) {
+					$item.addClass(plugin.settings.nav.selected);
+				}
+			},
+
+			Change: function($item) {
+				$item
+					.addClass(plugin.settings.nav.selected)
+					.siblings()
+						.removeClass(plugin.settings.nav.selected);
+
+				$els.content
+					.children()
+						.hide()
+						.filter('[data-index="' + $item.attr('data-index') + '"]')
+							.show();
 			}
 		},
 
