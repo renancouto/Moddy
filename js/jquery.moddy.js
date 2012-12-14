@@ -233,6 +233,8 @@
 						.attr('data-index', item.index)
 						.appendTo($els.content);
 
+				Content.Size($item);
+
 				if (item.index) {
 					$item.hide();
 				}
@@ -240,6 +242,19 @@
 					Box.Setup();
 					Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
 				}
+			},
+
+			Size: function($item) {
+				$els.box.show();
+
+				var dim = {
+					width: $item.width(),
+					height: $item.height()
+				};
+
+				$.data($item[0], 'dimensions', dim);
+
+				$els.box.hide();
 			}
 		},
 
