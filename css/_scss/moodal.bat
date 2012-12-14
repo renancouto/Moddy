@@ -1,1 +1,0 @@
-sass --watch --style compact moodal/_.scss:../moodal.css

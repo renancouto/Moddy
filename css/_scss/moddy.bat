@@ -1,0 +1,1 @@
+sass --watch --style compact moddy/_.scss:../moddy.css

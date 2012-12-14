@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-// =============
-// MOODAL STYLES
-// =============
+// ============
+// MODDY STYLES
+// ============
 
 // Common vars
-$prefix: 'moodal-';
+$prefix: 'moddy-';
 $z-index: 1000;
 
 // Shared
@@ -15,7 +15,8 @@ $z-index: 1000;
 @import
 	'shade',
 	'box',
-	'preloader',
+	'preloader';
 
-	'box.regular',
-	'preloader.regular';
+// Themes
+@import
+	'themes/regular/_';

@@ -1,10 +1,10 @@
 /*
-	Moodal plugin for jQuery
+	Moddy plugin for jQuery
 	@author: Renan Couto
 */
 
 ;(function($) {
-	var pluginName = 'moodal',
+	var pluginName = 'moddy',
 
 		defaults = {
 			animation: {
@@ -28,7 +28,7 @@
 				minWidth: 400
 			},
 
-			prefix: 'moodal-',
+			prefix: 'moddy-',
 
 			preloader: {
 				url: 'img/preloader.gif',

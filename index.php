@@ -1,27 +1,27 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Moodal</title>
+	<title>Moddy</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/moodal.css">
+	<link rel="stylesheet" href="css/moddy.css">
 	<script src="js/modernizr-2.6.2.min.js"></script>
 </head>
 
 <?php
 // Demos
-$simple = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')";
-$fixedWidth = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
-$ajax = "$.moodal({ ajax: { url: 'content/simple.php' }})";
-$callbacks = "$.moodal('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
-$multiple = "$.moodal(['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.'])";
-$multipleAjax = "$.moodal([{ ajax: { url: 'content/a.php' }, nav: { label: 'Botao' } } }, { ajax: { url: 'content/b.php' }}])";
+$simple = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')";
+$fixedWidth = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
+$ajax = "$.moddy({ ajax: { url: 'content/simple.php' }})";
+$callbacks = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
+$multiple = "$.moddy(['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.'])";
+$multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'A' } }, { ajax: { url: 'content/b.php' } }])";
 ?>
 
 <body>
 	<div class="main-wrapper">
 		<header class="main-header">
-			<!-- <div class="moodal-icon">
+			<!-- <div class="moddy-icon">
 				<div class="horn"></div>
 				<div class="eye left"></div>
 				<div class="eye right"></div>
@@ -31,7 +31,7 @@ $multipleAjax = "$.moodal([{ ajax: { url: 'content/a.php' }, nav: { label: 'Bota
 				<div class="close">x</div>
 			</div> -->
 
-			<h1 class="heading main">Moodal</h1>
+			<h1 class="heading main">Moddy</h1>
 			<p>Yet another jQuery modal plugin</p>
 		</header>
 
@@ -77,7 +77,7 @@ $multipleAjax = "$.moodal([{ ajax: { url: 'content/a.php' }, nav: { label: 'Bota
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src=js/jquery-1.8.3.min.js%3E%3C/script%3E'))</script>
-	<script src="js/jquery.moodal.js"></script>
+	<script src="js/jquery.moddy.js"></script>
 
 	<script>
 	(function($){

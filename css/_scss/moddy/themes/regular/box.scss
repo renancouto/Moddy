@@ -9,7 +9,7 @@
 	&.min-width {
 		border-radius: 0;
 
-		.moodal-close {
+		.#{$prefix}close {
 			border-radius: 0;
 			border-width: 1px;
 			padding: 0 $u - 2;
@@ -18,9 +18,9 @@
 		}
 	}
 
-	.moodal-contentItem { padding: $u*2; }
+	.#{$prefix}contentItem { padding: $u*2; }
 
-	.moodal-close {
+	.#{$prefix}close {
 		background: #000;
 		border: 2px solid #fff;
 		border-radius: 50%;
