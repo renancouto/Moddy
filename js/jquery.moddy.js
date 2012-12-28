@@ -239,6 +239,10 @@
 					$item.hide();
 				}
 				else {
+					if (plugin.settings.callbacks.build && $.isFunction(plugin.settings.callbacks.build)) {
+						plugin.settings.callbacks.build($item);
+					}
+
 					Box.Setup();
 					Helpers.Show($els.box, fromAjax ? 0 : plugin.settings.animation.speed, plugin.settings.callbacks.show, $item);
 				}

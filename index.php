@@ -13,7 +13,7 @@
 $simple = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit.')";
 $fixedWidth = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quod soluta molestiae. Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.', { dimensions: { width: 500 }})";
 $ajax = "$.moddy({ ajax: { url: 'content/simple.php' }})";
-$callbacks = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { show: function(\$el) { console.log(\$el[0]); }, hide: function() { console.log('hide'); } } })";
+$callbacks = "$.moddy('Lorem ipsum dolor sit amet, consectetur adipisicing elit.', { callbacks: { build: function(\$el) { console.log('build', \$el[0]); }, show: function(\$el) { console.log('show', \$el[0]); }, hide: function() { console.log('hide'); } } })";
 $multiple = "$.moddy(['Lorem ipsum dolor sit amet, consectetur adipisicing elit.', 'Quis maiores aspernatur blanditiis aliquid ullam dolorem esse est ea.'])";
 $multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'Content A' } }, { ajax: { url: 'content/b.php' }, nav: { label: 'Content B' } }])";
 ?>
@@ -57,7 +57,7 @@ $multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'Conte
 
 			<section id="callbacks" class="content-block clickable" title="Click to run!">
 				<h3 class="heading">With callbacks</h3>
-				<p class="desc">Available: on show (returns the content item); on hide</p>
+				<p class="desc">Available: on build / show (returns the content item); on hide</p>
 				<pre class="code"><?php echo $callbacks; ?>;</pre>
 			</section>
 
