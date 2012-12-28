@@ -249,16 +249,21 @@
 			},
 
 			Size: function($item) {
+				var visible = $els.box.is(':visible'),
+					dim;
+
 				$els.box.show();
 
-				var dim = {
+				dim = {
 					width: $item.width(),
 					height: $item.height()
 				};
 
 				$.data($item[0], 'dimensions', dim);
 
-				$els.box.hide();
+				if (!visible) {
+					$els.box.hide();
+				}
 			}
 		},
 
