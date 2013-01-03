@@ -21,16 +21,6 @@ $multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'Conte
 <body>
 	<div class="main-wrapper">
 		<header class="main-header">
-			<!-- <div class="moddy-icon">
-				<div class="horn"></div>
-				<div class="eye left"></div>
-				<div class="eye right"></div>
-				<div class="nose left"></div>
-				<div class="nose right"></div>
-				<div class="ears"></div>
-				<div class="close">x</div>
-			</div> -->
-
 			<h1 class="heading main">Moddy</h1>
 			<p>Yet another jQuery modal plugin</p>
 		</header>
@@ -78,7 +68,6 @@ $multipleAjax = "$.moddy([{ ajax: { url: 'content/a.php' }, nav: { label: 'Conte
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src=js/jquery-1.8.3.min.js%3E%3C/script%3E'))</script>
 	<script src="js/jquery.moddy.js"></script>
-	<script src="js/jquery.actual.js"></script>
 
 	<script>
 	(function($){
