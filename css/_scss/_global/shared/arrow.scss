@@ -1,0 +1,7 @@
+@mixin arrow($size, $color, $dir, $opposite-dir) {
+	border: $size solid transparent;
+	border-#{$dir}: none;
+	border-#{$opposite-dir}-color: $color;
+	content: '';
+	position: absolute;
+}

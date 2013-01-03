@@ -6,7 +6,7 @@
 	box-shadow: rgba(0,0,0,.5) 0 0 5px inset;
 	margin: $u (-$u) 0;
 	padding: $u*2;
-	@include transition(all);
+	@include transition(all 0.2s linear);
 
 	&.clickable {
 		cursor: pointer;
@@ -22,7 +22,7 @@
 			padding: $u $u*2 - 2;
 			right: 0;
 			top: -25px;
-			@include transition(all);
+			@include transition(all 0.2s linear);
 		}
 
 		&:hover {
